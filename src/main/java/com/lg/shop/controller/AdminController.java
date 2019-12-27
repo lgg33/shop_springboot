@@ -90,6 +90,7 @@ public class AdminController {
         }
         Message message = new Message();
         message.setUrl("products/" + image);
+        //java
         return message;
     }
 
