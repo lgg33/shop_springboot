@@ -1,5 +1,7 @@
 package com.lg.shop.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lg.shop.common.response.CommonCode;
 import com.lg.shop.common.response.QueryResponseResult;
 import com.lg.shop.common.response.QueryResult;
@@ -35,9 +37,21 @@ public class CategoryController {
         return new QueryResponseResult(CommonCode.SUCCESS, categoryQueryResult);
     }
 
+    @GetMapping("/findAllByPage/{num}/{size}")
+    public QueryResponseResult findAllByPage(@PathVariable("num") Integer num, @PathVariable("size") Integer size) {
+        PageHelper.startPage(num, size);
+        List<Category> categories = categoryService.findAll();
+        PageInfo<Category> pageInfo = new PageInfo<>(categories);
+        QueryResult<Category> categoryQueryResult = new QueryResult<>();
+        categoryQueryResult.setList(pageInfo.getList());
+        categoryQueryResult.setTotal(pageInfo.getTotal());
+        return new QueryResponseResult(CommonCode.SUCCESS, categoryQueryResult);
+    }
+
     @GetMapping("/findById/{id}")
     public Category findById(@PathVariable("id") String id) {
         return categoryService.findById(id);
     }
+
 
 }

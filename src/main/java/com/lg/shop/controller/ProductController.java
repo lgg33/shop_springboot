@@ -36,7 +36,6 @@ public class ProductController {
     @GetMapping("/hotProduct")
     public QueryResponseResult hotProduct() {
         List<Product> hotProduct = productService.findHotProduct();
-        System.out.println(hotProduct);
         QueryResult<Product> queryResult = new QueryResult<>();
         queryResult.setList(hotProduct);
         return new QueryResponseResult(CommonCode.SUCCESS, queryResult);

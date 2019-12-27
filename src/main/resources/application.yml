@@ -37,6 +37,9 @@ spring:
   messages:
     basename: international.login
     encoding: utf-8
+  servlet:
+    multipart:
+      max-file-size: 10MB
 #   redis配置
 #  redis:
 #    host: 192.168.64.130
@@ -48,7 +51,7 @@ spring:
 #    context-path: /web
 
 server:
-  port: 9000
+  port: 9001
 
 # 分页配置
 pagehelper:
@@ -56,3 +59,4 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
+
